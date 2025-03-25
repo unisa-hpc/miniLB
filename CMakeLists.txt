@@ -41,9 +41,9 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO
 
 set(SYCL_IMPL
     ""
-    CACHE STRING "SYCL implementation (AdaptiveCpp, dpcpp, triSYCL)")
+    CACHE STRING "SYCL implementation (AdaptiveCpp, dpcpp, icpx)")
 
-set(supported_implementations AdaptiveCpp dpcpp)
+set(supported_implementations AdaptiveCpp dpcpp icpx)
 
 list(FIND supported_implementations ${SYCL_IMPL} impl_idx)
 
@@ -60,9 +60,15 @@ if (BGK_SYCL_DISABLE_CPU_DEVICE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSYCL_DISABLE_CPU_DEVICE")
 endif()
 
+
+if(CMAKE_CXX_COMPILER STREQUAL "icpx")
+  find_package(IntelSYCL REQUIRED)
+  set(SYCL_IMPL "icpx")
+endif()
+
 if(SYCL_IMPL STREQUAL "AdaptiveCpp")
   find_package(AdaptiveCpp REQUIRED)
-elseif(SYCL_IMPL STREQUAL "dpcpp")
+elseif(SYCL_IMPL STREQUAL "dpcpp" OR SYCL_IMPL STREQUAL "icpx")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsycl")
   
   set(DPCPP_TARGETS "spir64_x86_64")
