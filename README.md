@@ -12,7 +12,7 @@ miniLB uses CMake to generate building files.
 To configure the project:
 ```bash
     cmake -DCMAKE_BUILD_TYPE=Release
-    -DSYCL_IMPL=[AdaptiveCpp|dpcpp] \
+    -DSYCL_IMPL=[AdaptiveCpp|dpcpp|icpx] \
     -BGK_USE_CASE=[LDC|POF|VKS|TGV]  \ #Enable use case 
     -DBGK_PRECISION=[SINGLE|DOUBLE|MIXED1|MIXED2] \
     -DBGK_SYCL_MALLOC_SHARED=[ON|OFF] \ # Enable malloc shared 
@@ -25,7 +25,7 @@ To configure the project:
 When using DPC++ as the SYCL compiler, additional flags are requierd:
 ```bash
 -DCMAKE_CXX_COMPILER=path_to_dpcpp_clang_compiler \
--DDPCPP_WITH_[CUDA|ROCM|LZ]_BACKEND=[ON|OFF] \ #Enable the CUDA\HIP\Level Zero backend
+-DDPCPP_WITH_[CUDA|ROCM|LZ]_BACKEND=[ON|OFF] \ #Enable the CUDA\HIP\Level Zero backend for both dpcpp and icpx
 -D[CUDA|ROCM|LZ]_ARCH=arch \ # Select target device architecture
 ```
 By default, the DPC++ backend requires a working CPU backend as well, so make sure to install the required Intel OpenCL runtime on your system.
