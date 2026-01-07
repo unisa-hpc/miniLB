@@ -52,3 +52,21 @@ Copy the `bgk.input` in the same folder of the executable, and then type:
 ```bash
 ./bgk2dSYCL 
 ```
+
+## References
+If you use SYCL-Bench, please cite the following article:
+```
+@article{COSENZA2026108032,
+title = {miniLB: Benchmarking Lattice Boltzmann simulations on AMD, Intel, and NVIDIA GPUs},
+journal = {Future Generation Computer Systems},
+volume = {175},
+pages = {108032},
+year = {2026},
+issn = {0167-739X},
+doi = {https://doi.org/10.1016/j.future.2025.108032},
+url = {https://www.sciencedirect.com/science/article/pii/S0167739X25003279},
+author = {Biagio Cosenza and Luigi Crisci and Giorgio Amati and Matteo Turisini},
+keywords = {Lattice Boltzmann methods, GPU, Heterogeneous computing, SYCL, Mixed precision}
+}
+```
+
